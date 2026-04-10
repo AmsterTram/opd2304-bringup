@@ -1,0 +1,10 @@
+# Firmware inventory
+
+Track available stock OTA/full packages with provenance and checksums.
+
+| Item | Status | Build | Region | Source URL | SHA256 | Notes |
+|---|---|---|---|---|---|---|
+| Observed on-device firmware | Verified | OPD2304_14.0.0.2900(EX01B40P02) | Unknown | N/A | N/A | user-provided |
+| Observed build fingerprint | Verified | OnePlus/OPD2304EEA/OP5DA6L1:14/UKQ1.230924.001/T.R4T1.22e07d8_2:user/release-keys | EEA (inferred from fingerprint tag) | research/evidence/2026-04-10T110346Z/getprop-key-lines.txt | N/A | captured from getprop |
+| fastboot product identifier | Verified | k6789v1_64 | Unknown | research/evidence/2026-04-10T110346Z/fastboot-transcript.txt | N/A | from fastboot getvar |
+| Stock package for observed build | Unknown | OPD2304_14.0.0.2900(EX01B40P02) | Unknown | Unknown | Unknown | Needs verification |
