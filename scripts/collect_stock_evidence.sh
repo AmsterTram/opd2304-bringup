@@ -28,13 +28,31 @@ adb devices | tee "${out_dir}/adb-devices.txt"
 echo "[+] Collecting Android properties and partition context (read-only)..."
 adb shell getprop | tee "${out_dir}/getprop-full.txt"
 adb shell ls -l /dev/block/by-name | tee "${out_dir}/by-name.txt"
-adb shell cat /proc/partitions | tee "${out_dir}/proc-partitions.txt"
-adb shell cat /proc/cmdline | tee "${out_dir}/proc-cmdline.txt"
+
+# /proc access may be restricted on production builds. Treat as best-effort.
+if adb shell cat /proc/partitions >"${out_dir}/proc-partitions.txt" 2>"${out_dir}/proc-partitions.error.txt"; then
+  echo "[+] Collected /proc/partitions"
+else
+  echo "[!] Could not read /proc/partitions as shell user; see proc-partitions.error.txt"
+fi
+
+if adb shell cat /proc/cmdline >"${out_dir}/proc-cmdline.txt" 2>"${out_dir}/proc-cmdline.error.txt"; then
+  echo "[+] Collected /proc/cmdline"
+else
+  echo "[!] Could not read /proc/cmdline as shell user; see proc-cmdline.error.txt"
+fi
+
 adb shell getprop ro.build.fingerprint | tee "${out_dir}/ro-build-fingerprint.txt"
 adb shell getprop ro.product.device | tee "${out_dir}/ro-product-device.txt"
 adb shell getprop ro.boot.slot_suffix | tee "${out_dir}/ro-boot-slot-suffix.txt"
 adb shell getprop ro.boot.dynamic_partitions | tee "${out_dir}/ro-boot-dynamic-partitions.txt"
 adb shell getprop ro.treble.enabled | tee "${out_dir}/ro-treble-enabled.txt"
+
+# Optional fallback attempts for builds with restricted /proc access.
+(adb shell cat /proc/mounts | tee "${out_dir}/proc-mounts.txt") || true
+(adb shell ls -l /proc | tee "${out_dir}/proc-ls-l.txt") || true
+(adb shell getprop ro.boot.bootdevice | tee "${out_dir}/ro-boot-bootdevice.txt") || true
+(adb shell getprop ro.boot.verifiedbootstate | tee "${out_dir}/ro-boot-verifiedbootstate.txt") || true
 
 echo "[+] Optional: reboot to bootloader before running fastboot collection."
 echo "[+] Attempting fastboot query (will fail harmlessly if not in fastboot mode)."
