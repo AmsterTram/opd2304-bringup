@@ -10,14 +10,18 @@
 | Observed Android version | Verified | 14 | user-provided |
 | Observed kernel string | Verified | 5.10.236-android12-9-o-g838a99159cea | user-provided |
 | SoC family | Inferred | MediaTek Helio G99 / mt6789 | needs verification |
+| fastboot product | Verified | k6789v1_64 | research/evidence/2026-04-10T110346Z/fastboot-transcript.txt |
+| fastboot slot count | Verified | 2 | research/evidence/2026-04-10T110346Z/fastboot-transcript.txt |
+| fastboot current slot | Verified | a | research/evidence/2026-04-10T110346Z/fastboot-transcript.txt |
+| fastboot userspace mode | Verified | no | research/evidence/2026-04-10T110346Z/fastboot-transcript.txt |
+| fastboot unlocked state | Verified | no | research/evidence/2026-04-10T110346Z/fastboot-transcript.txt |
 
 ## Unknown / Needs verification
 
-- Boot slot scheme (A/B or otherwise)
-- Dynamic partitions support
-- Full partition inventory from stock
-- Presence and role of `vendor_boot` and `init_boot`
-- Fastbootd behavior and requirements
+- Dynamic partitions support (confirm from collected `ro.boot.dynamic_partitions` content)
+- Full partition inventory from stock (`/dev/block/by-name` mapping not yet transcribed)
+- Presence and role of `vendor_boot` and `init_boot` in actual boot chain
+- Fastbootd behavior and requirements during partition operations
 - Exact stock restore package sources for observed build
 
 ## Evidence targets
@@ -28,6 +32,6 @@ Collect and archive:
 - `/dev/block/by-name` listing
 - `/proc/partitions`
 - `/proc/cmdline`
-- `fastboot getvar all`
+- `fastboot getvar all` or targeted `fastboot getvar` values
 
-Store results under a dated folder, for example `research/evidence/2026-04-08/`.
+Store results under dated folders in `research/evidence/`.
