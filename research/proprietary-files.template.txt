@@ -1,0 +1,7 @@
+# Template only: proprietary files list for OPD2304
+# Status: Placeholder / Needs verification
+# Do not treat this as complete.
+# Populate only with evidence-backed entries.
+
+# Format guidance (example):
+# <source_path_in_partition>:<destination_path>

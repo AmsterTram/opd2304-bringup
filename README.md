@@ -117,3 +117,185 @@ adb shell cat /proc/cmdline > cmdline.txt
 adb shell getprop ro.boot.slot_suffix
 adb shell getprop ro.boot.dynamic_partitions
 adb shell getprop ro.treble.enabled
+```
+
+In bootloader / fastboot:
+
+```bash
+fastboot getvar all 2>&1 | tee fastboot-vars.txt
+```
+
+### Phase 2: firmware and restore path
+
+Before any serious bring-up work:
+
+- identify exact stock build
+- obtain full OTA / payload / restore package if possible
+- document rollback or stock restore process
+
+### Phase 3: partition and boot-chain mapping
+
+Confirm the role of:
+
+- `boot`
+- `vendor_boot`
+- `init_boot`
+- `vbmeta`
+- `dtbo`
+- `super`
+- fastbootd
+- slot behavior, if present
+
+### Phase 4: GSI feasibility
+
+Do not start with a full custom ROM build if a GSI smoke test has not been evaluated first.
+
+### Phase 5: blob and source strategy
+
+Determine:
+
+- what can be derived from public source releases
+- what must be extracted from stock firmware or a live device
+- which hardware features are likely to need proprietary support
+
+### Phase 6: bring-up scaffolding
+
+Only after evidence is collected should this repo gain:
+
+- device notes
+- vendor/blob manifests
+- kernel/source references
+- carefully marked placeholders for future device tree work
+
+---
+
+## Repository structure
+
+Planned or expected layout:
+
+```text
+.
+├── AGENTS.md
+├── README.md
+├── docs/
+│   ├── device-profile.md
+│   ├── partition-research.md
+│   ├── blob-extraction-plan.md
+│   ├── gsi-test-plan.md
+│   ├── bringup-roadmap.md
+│   └── recovery-and-restore.md
+├── scripts/
+│   ├── collect_*.sh
+│   ├── analyze_*.py
+│   └── unpack_*.py
+├── research/
+│   ├── firmware-inventory.md
+│   ├── partition-inventory.md
+│   ├── proprietary-blob-tracker.md
+│   └── hardware-bringup-matrix.md
+├── device/
+├── vendor/
+└── kernel/
+```
+
+Not every directory needs to exist immediately. The repo should grow based on evidence, not wishful structure.
+
+---
+
+## What “done” looks like at this stage
+
+A useful first version of this repo should include:
+
+- a clear device fact sheet
+- a partition mapping document
+- safe read-only collection scripts
+- notes on OTA/payload unpacking
+- a recovery-first workflow
+- a GSI test plan
+- a proprietary blob extraction plan
+- a realistic bring-up roadmap
+
+A full device tree is **not** expected at the start.
+
+---
+
+## First commands to run
+
+These are good first data-collection steps once USB debugging is enabled:
+
+```bash
+adb devices
+adb shell getprop | tee getprop-full.txt
+adb shell ls -l /dev/block/by-name | tee by-name.txt
+adb shell cat /proc/partitions | tee partitions.txt
+adb shell cat /proc/cmdline | tee cmdline.txt
+adb shell getprop ro.build.fingerprint
+adb shell getprop ro.product.device
+adb shell getprop ro.boot.slot_suffix
+adb shell getprop ro.boot.dynamic_partitions
+adb shell getprop ro.treble.enabled
+```
+
+Then reboot to bootloader and collect:
+
+```bash
+fastboot devices
+fastboot getvar all 2>&1 | tee fastboot-vars.txt
+```
+
+Store these outputs in a dated folder.
+
+---
+
+## Contribution guidelines
+
+Contributions should be:
+
+- small
+- reviewable
+- evidence-based
+- explicit about uncertainty
+
+Good examples:
+
+- add a safe collection script
+- improve device-profile docs
+- add verified partition findings
+- document restore procedures
+- improve OTA unpacking notes
+
+Bad examples:
+
+- adding guessed board config values
+- claiming GSI or ROM support without logs
+- copying device trees from unrelated devices without explanation
+
+---
+
+## Current blockers
+
+Known likely blockers include:
+
+- lack of verified full firmware package for the exact current build
+- incomplete confirmation of partition layout
+- unknown GSI compatibility state
+- unknown difficulty of LTE-related bring-up
+- possible mismatch between public source drops and the current observed firmware
+
+---
+
+## Next step
+
+The best next move is to gather **read-only evidence from the stock tablet** and document it under `docs/` and `research/`.
+
+If you are using Codex, start with a prompt like:
+
+> Inspect this repository and set up the initial OPD2304 bring-up workspace following AGENTS.md. Prioritize safe evidence collection scripts, docs, and research templates. Do not invent unsupported flashing details.
+
+---
+
+## Disclaimer
+
+This project is intended for owners, developers, and researchers working on their own hardware.
+
+Use at your own risk.

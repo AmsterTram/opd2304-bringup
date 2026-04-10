@@ -1,0 +1,16 @@
+total 0
+lrwxrwxrwx 1 root root 16 2026-04-10 13:02 boot_a -> /dev/block/sdc34
+lrwxrwxrwx 1 root root 16 2026-04-10 13:02 boot_b -> /dev/block/sdc64
+lrwxrwxrwx 1 root root 16 2026-04-10 13:02 dtbo_a -> /dev/block/sdc37
+lrwxrwxrwx 1 root root 16 2026-04-10 13:02 dtbo_b -> /dev/block/sdc69
+lrwxrwxrwx 1 root root 16 2026-04-10 13:02 init_boot_a -> /dev/block/sdc35
+lrwxrwxrwx 1 root root 16 2026-04-10 13:02 init_boot_b -> /dev/block/sdc65
+lrwxrwxrwx 1 root root 16 2026-04-10 13:02 super -> /dev/block/sdc72
+lrwxrwxrwx 1 root root 16 2026-04-10 13:02 vbmeta_a -> /dev/block/sdc11
+lrwxrwxrwx 1 root root 16 2026-04-10 13:02 vbmeta_b -> /dev/block/sdc14
+lrwxrwxrwx 1 root root 16 2026-04-10 13:02 vbmeta_system_a -> /dev/block/sdc12
+lrwxrwxrwx 1 root root 16 2026-04-10 13:02 vbmeta_system_b -> /dev/block/sdc15
+lrwxrwxrwx 1 root root 16 2026-04-10 13:02 vbmeta_vendor_a -> /dev/block/sdc13
+lrwxrwxrwx 1 root root 16 2026-04-10 13:02 vbmeta_vendor_b -> /dev/block/sdc16
+lrwxrwxrwx 1 root root 16 2026-04-10 13:02 vendor_boot_a -> /dev/block/sdc36
+lrwxrwxrwx 1 root root 16 2026-04-10 13:02 vendor_boot_b -> /dev/block/sdc66
