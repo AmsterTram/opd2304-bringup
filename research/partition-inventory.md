@@ -10,13 +10,22 @@ Populate with direct evidence from stock device output files.
 | Current slot | Verified | a | research/evidence/2026-04-10T110346Z/fastboot-transcript.txt |
 | Fastboot userspace | Verified | no | research/evidence/2026-04-10T110346Z/fastboot-transcript.txt |
 
-## Partition names (needs by-name transcription)
+## By-name verified partition presence (excerpt)
 
-| Partition | Status | Source file | Notes |
+| Partition family | Status | Evidence | Notes |
 |---|---|---|---|
-| boot | Unknown | research/evidence/2026-04-10T110346Z/by-name.txt | pending parse |
-| vendor_boot | Unknown | research/evidence/2026-04-10T110346Z/by-name.txt | pending parse |
-| init_boot | Unknown | research/evidence/2026-04-10T110346Z/by-name.txt | pending parse |
-| vbmeta | Unknown | research/evidence/2026-04-10T110346Z/by-name.txt | pending parse |
-| dtbo | Unknown | research/evidence/2026-04-10T110346Z/by-name.txt | pending parse |
-| super | Unknown | research/evidence/2026-04-10T110346Z/by-name.txt | pending parse |
+| boot_a / boot_b | Verified | by-name-excerpt.txt | A/B boot partitions present |
+| init_boot_a / init_boot_b | Verified | by-name-excerpt.txt | A/B init_boot present |
+| vendor_boot_a / vendor_boot_b | Verified | by-name-excerpt.txt | A/B vendor_boot present |
+| dtbo_a / dtbo_b | Verified | by-name-excerpt.txt | A/B dtbo present |
+| vbmeta_a / vbmeta_b | Verified | by-name-excerpt.txt | A/B vbmeta present |
+| vbmeta_system_a / vbmeta_system_b | Verified | by-name-excerpt.txt | A/B vbmeta_system present |
+| vbmeta_vendor_a / vbmeta_vendor_b | Verified | by-name-excerpt.txt | A/B vbmeta_vendor present |
+| super | Verified | by-name-excerpt.txt | dynamic super block present |
+
+## Properties cross-check
+
+| Property | Status | Value | Source |
+|---|---|---|---|
+| ro.boot.dynamic_partitions | Verified | true | getprop-key-lines.txt |
+| ro.boot.slot_suffix | Verified | _a | getprop-key-lines.txt |

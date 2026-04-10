@@ -1,0 +1,5 @@
+[ro.boot.dynamic_partitions]: [true]
+[ro.boot.slot_suffix]: [_a]
+[ro.build.fingerprint]: [OnePlus/OPD2304EEA/OP5DA6L1:14/UKQ1.230924.001/T.R4T1.22e07d8_2:user/release-keys]
+[ro.product.device]: [OP5DA6L1]
+[ro.treble.enabled]: [true]

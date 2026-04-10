@@ -17,13 +17,15 @@ Document a restore-first workflow before any risky experimentation.
 - Confirmed full restore procedure: **Unknown**
 - Fastboot connectivity: **Verified**
 - Fastboot reported unlock state (2026-04-10 evidence): **unlocked: no**
+- Build fingerprint captured: **Verified** (`OnePlus/OPD2304EEA/OP5DA6L1:14/UKQ1.230924.001/T.R4T1.22e07d8_2:user/release-keys`)
 
 ## Pre-risk checklist
 
 - [ ] Backup personal data off-device
 - [ ] Confirm ability to enter bootloader/recovery modes
 - [x] Archive key fastboot variables (`product`, `slot-count`, `current-slot`, `unlocked`, `is-userspace`)
-- [ ] Record active build fingerprint and software version in docs
+- [x] Record active build fingerprint and software version in docs
+- [ ] Collect and archive `proc-cmdline.txt`
 - [ ] Document stock package acquisition and verified rollback procedure
 
 ## Warnings
