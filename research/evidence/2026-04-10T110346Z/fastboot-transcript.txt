@@ -1,0 +1,23 @@
+PS P:\Android\opd2304> fastboot devices
+SWIN99NRLZQC79LV         fastboot
+PS P:\Android\opd2304> fastboot getvar product
+product: k6789v1_64
+Finished. Total time: 0.003s
+PS P:\Android\opd2304> fastboot getvar current-slot
+current-slot: a
+Finished. Total time: 0.003s
+PS P:\Android\opd2304> fastboot getvar product 2>&1 | tee fastboot-product.txt
+fastboot : product: k6789v1_64
+Finished. Total time: 0.001s
+PS P:\Android\opd2304> fastboot getvar unlocked 2>&1 | tee fastboot-unlocked.txt
+fastboot : unlocked: no
+Finished. Total time: 0.001s
+PS P:\Android\opd2304> fastboot getvar current-slot 2>&1 | tee fastboot-current-slot.txt
+fastboot : current-slot: a
+Finished. Total time: 0.001s
+PS P:\Android\opd2304> fastboot getvar slot-count 2>&1 | tee fastboot-slot-count.txt
+fastboot : slot-count: 2
+Finished. Total time: 0.001s
+PS P:\Android\opd2304> fastboot getvar is-userspace 2>&1 | tee fastboot-is-userspace.txt
+fastboot : is-userspace: no
+Finished. Total time: 0.001s

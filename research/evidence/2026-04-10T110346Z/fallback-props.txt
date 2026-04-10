@@ -1,0 +1,2 @@
+ro.boot.bootdevice=
+ro.boot.verifiedbootstate=green

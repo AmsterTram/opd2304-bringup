@@ -1,0 +1,9 @@
+/dev/block/dm-28 / erofs ro,seclabel,relatime,user_xattr,acl,cache_strategy=readaround 0 0
+/dev/block/dm-29 /vendor erofs ro,seclabel,relatime,user_xattr,acl,cache_strategy=readaround 0 0
+/dev/block/dm-30 /product erofs ro,seclabel,relatime,user_xattr,acl,cache_strategy=readaround 0 0
+/dev/block/dm-31 /system_ext erofs ro,seclabel,relatime,user_xattr,acl,cache_strategy=readaround 0 0
+/dev/block/dm-5 /odm erofs ro,seclabel,relatime,user_xattr,acl,cache_strategy=readaround 0 0
+/dev/block/dm-32 /vendor_dlkm ext4 ro,seclabel,relatime 0 0
+/dev/block/dm-33 /odm_dlkm ext4 ro,seclabel,relatime 0 0
+/dev/block/by-name/metadata /metadata ext4 rw,seclabel,nosuid,nodev,noatime,discard 0 0
+/dev/block/dm-70 /data f2fs rw,lazytime,seclabel,nosuid,nodev,noatime,... 0 0
