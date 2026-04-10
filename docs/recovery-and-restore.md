@@ -18,6 +18,7 @@ Document a restore-first workflow before any risky experimentation.
 - Fastboot connectivity: **Verified**
 - Fastboot reported unlock state (2026-04-10 evidence): **unlocked: no**
 - Build fingerprint captured: **Verified** (`OnePlus/OPD2304EEA/OP5DA6L1:14/UKQ1.230924.001/T.R4T1.22e07d8_2:user/release-keys`)
+- `ro.boot.verifiedbootstate`: **Verified** (`green`)
 
 ## Pre-risk checklist
 
@@ -25,7 +26,7 @@ Document a restore-first workflow before any risky experimentation.
 - [ ] Confirm ability to enter bootloader/recovery modes
 - [x] Archive key fastboot variables (`product`, `slot-count`, `current-slot`, `unlocked`, `is-userspace`)
 - [x] Record active build fingerprint and software version in docs
-- [ ] Collect and archive `proc-cmdline.txt`
+- [x] Collect fallback mount evidence (`/proc/mounts`) when `/proc` reads are restricted
 - [ ] Document stock package acquisition and verified rollback procedure
 
 ## Warnings

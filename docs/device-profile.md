@@ -14,6 +14,8 @@
 | ro.treble.enabled | Verified | true | research/evidence/2026-04-10T110346Z/getprop-key-lines.txt |
 | ro.boot.dynamic_partitions | Verified | true | research/evidence/2026-04-10T110346Z/getprop-key-lines.txt |
 | ro.boot.slot_suffix | Verified | _a | research/evidence/2026-04-10T110346Z/getprop-key-lines.txt |
+| ro.boot.verifiedbootstate | Verified | green | research/evidence/2026-04-10T110346Z/fallback-props.txt |
+| ro.boot.bootdevice | Verified (empty) | (empty string) | research/evidence/2026-04-10T110346Z/fallback-props.txt |
 | fastboot product | Verified | k6789v1_64 | research/evidence/2026-04-10T110346Z/fastboot-transcript.txt |
 | fastboot slot count | Verified | 2 | research/evidence/2026-04-10T110346Z/fastboot-transcript.txt |
 | fastboot current slot | Verified | a | research/evidence/2026-04-10T110346Z/fastboot-transcript.txt |
@@ -24,7 +26,7 @@
 ## Unknown / Needs verification
 
 - Full partition inventory normalization (full by-name parse beyond current excerpt)
-- Kernel cmdline details (`proc-cmdline.txt` missing in current evidence set)
+- Kernel cmdline details (shell user cannot read `/proc/cmdline` on this build)
 - Exact stock restore package sources for observed build
 
 ## Evidence targets
@@ -33,8 +35,9 @@ Collect and archive:
 
 - full `adb shell getprop`
 - full `/dev/block/by-name` listing
-- `/proc/partitions`
-- `/proc/cmdline`
+- `/proc/partitions` (if permitted)
+- `/proc/cmdline` (if permitted)
+- fallback `/proc/mounts`
 - `fastboot getvar all` or targeted `fastboot getvar` values
 
 Store results under dated folders in `research/evidence/`.

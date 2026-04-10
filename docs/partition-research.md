@@ -7,8 +7,9 @@
 - Dynamic partition status: **Verified** (`ro.boot.dynamic_partitions: true`)
 - Treble status: **Verified** (`ro.treble.enabled: true`)
 - Fastboot mode status: **Verified** (`is-userspace: no`, bootloader fastboot)
+- AVB state signal: **Verified** (`ro.boot.verifiedbootstate: green`)
 
-## Verified partition evidence (excerpt)
+## Verified partition evidence
 
 From `research/evidence/2026-04-10T110346Z/by-name-excerpt.txt`:
 
@@ -21,13 +22,24 @@ From `research/evidence/2026-04-10T110346Z/by-name-excerpt.txt`:
 - `vbmeta_vendor_a`, `vbmeta_vendor_b`
 - `super`
 
+From `research/evidence/2026-04-10T110346Z/proc-mounts-excerpt.txt`:
+
+- root `/` mounted from `dm-28` as `erofs`
+- `/vendor`, `/product`, `/system_ext`, `/odm` mounted from device-mapper as `erofs`
+- `/vendor_dlkm` and `/odm_dlkm` mounted read-only
+- `/metadata` on ext4
+- `/data` on f2fs
+
 ## Safe evidence collection checklist
 
 - [x] `adb shell ls -l /dev/block/by-name` (excerpt parsed)
-- [ ] `adb shell cat /proc/partitions` (not yet parsed)
+- [ ] `adb shell cat /proc/partitions` (permission denied as shell user)
+- [ ] `adb shell cat /proc/cmdline` (permission denied as shell user)
+- [x] `adb shell cat /proc/mounts` (fallback succeeded)
 - [x] `adb shell getprop ro.boot.slot_suffix`
 - [x] `adb shell getprop ro.boot.dynamic_partitions`
 - [x] `adb shell getprop ro.treble.enabled`
+- [x] `adb shell getprop ro.boot.verifiedbootstate`
 - [x] `fastboot getvar current-slot`
 - [x] `fastboot getvar slot-count`
 - [x] `fastboot getvar is-userspace`
@@ -39,5 +51,5 @@ From `research/evidence/2026-04-10T110346Z/by-name-excerpt.txt`:
 
 ## Needs verification
 
-- kernel boot cmdline (`proc-cmdline.txt` missing)
+- privileged kernel cmdline read (`/proc/cmdline`) from root/recovery context
 - restore path details aligned to this exact fingerprint/build
